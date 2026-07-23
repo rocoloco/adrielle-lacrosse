@@ -7,414 +7,442 @@
 <meta name="description" content="Adrielle Rosario — Men's Lacrosse Recruiting Profile, Class of 2028">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
   /* ============================================
-     TOKENS — edit these to restyle the whole site
+     TOKENS — SpaceX design language
+     Black canvas, white type, ghost pills, no accents.
+     Using Inter 700+ as D-DIN substitute per spec.
      ============================================ */
   :root {
-    --navy-dark:   #0B1826;
-    --navy:        #14273B;
-    --navy-mid:    #1F3A54;
-    --paper:       #F7F7F4;
-    --steel:       #5B6472;
-    --ink:         #1B2430;
-    --gold:        #C79A45;
-    --gold-dim:    #A87F36;
+    --canvas:        #000000;
+    --canvas-soft:   #0a0a0a;
+    --white:         #ffffff;
+    --white-mute:    #f0f0fa;
+    --hairline:      #3a3a3f;
+    --ink-mute:      #5a5a5f;
 
-    --font-display: "Sora", "Segoe UI", sans-serif;
-    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-mono: "IBM Plex Mono", "Courier New", monospace;
-
-    --shadow-sm: 0 1px 3px rgba(11,24,38,0.06), 0 1px 2px rgba(11,24,38,0.04);
-    --shadow-md: 0 8px 24px rgba(11,24,38,0.08), 0 2px 6px rgba(11,24,38,0.05);
+    --font-display:  "Inter", "Arial Narrow", Arial, Verdana, sans-serif;
+    --font-body:     "Inter", Arial, Verdana, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--canvas);
+    color: var(--white);
     font-family: var(--font-body);
-    line-height: 1.6;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.32px;
     -webkit-font-smoothing: antialiased;
   }
 
   a { color: inherit; text-decoration: none; }
-
   img, video { max-width: 100%; display: block; }
 
   /* ============================================
-     YARD-LINE DIVIDER
-     ============================================ */
-  .yard-line {
-    position: relative;
-    height: 1px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    background: linear-gradient(90deg, transparent, rgba(27,36,48,0.12) 20%, rgba(27,36,48,0.12) 80%, transparent);
-  }
-
-  .yard-line::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -3px;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-
-  /* ============================================
-     NAV
+     NAV — fixed overlay, transparent on imagery
      ============================================ */
   header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    background: rgba(11,24,38,0.96);
-    backdrop-filter: blur(6px);
-    color: var(--paper);
-    border-bottom: 1px solid rgba(199,154,69,0.35);
-  }
-
-  .nav-wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 18px 24px;
+    padding: 24px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    background: transparent;
+    transition: background 0.3s ease;
   }
 
-  .nav-name {
+  header.scrolled {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-wordmark {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: 0.01em;
+    font-size: 13px;
+    letter-spacing: 1.17px;
+    text-transform: uppercase;
   }
 
   .nav-links {
     display: flex;
-    gap: 28px;
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    font-weight: 500;
+    gap: 32px;
+    list-style: none;
   }
 
-  .nav-links a { opacity: 0.75; transition: opacity 0.2s ease, color 0.2s ease; }
-  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.17px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    margin: 5px 0;
+    transition: 0.2s;
+  }
 
   /* ============================================
-     HERO
+     HERO — full-viewport band
      ============================================ */
   .hero {
-    background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 65%, var(--navy-mid) 100%);
-    color: var(--paper);
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     overflow: hidden;
-    padding: 88px 24px 72px;
   }
 
-  .hero::before {
+  /* Replace this gradient with a real full-bleed photo:
+     background: url('your-lacrosse-action-photo.jpg') center/cover no-repeat;
+     Grade the photo dark so white type lands cleanly — no scrim overlay. */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 40%, #111 0%, #000 100%);
+    z-index: 0;
+  }
+
+  /* Subtle field texture — remove if using a real photo */
+  .hero-bg::after {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(199,154,69,0.16), transparent 60%),
-      repeating-linear-gradient(135deg, rgba(247,247,244,0.025) 0px, rgba(247,247,244,0.025) 1px, transparent 1px, transparent 34px);
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 79px,
+        rgba(255,255,255,0.02) 79px,
+        rgba(255,255,255,0.02) 80px
+      );
     pointer-events: none;
   }
 
-  .hero-photo {
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    background: linear-gradient(150deg, var(--navy-mid), var(--navy-dark));
-    border: 2px solid rgba(199,154,69,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    box-shadow: var(--shadow-md);
-  }
-
-  .hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
+  .hero-content {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 56px;
-    align-items: end;
+    max-width: 900px;
+    padding: 0 32px;
   }
 
   .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.96px;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
+    line-height: 2;
+    color: var(--white-mute);
+    margin-bottom: 24px;
   }
 
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    line-height: 1.05;
-    letter-spacing: -0.01em;
+    font-size: clamp(48px, 8vw, 80px);
+    line-height: 0.95;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
   }
 
   .hero-sub {
-    margin-top: 16px;
-    font-size: 1.05rem;
-    color: var(--paper);
-    opacity: 0.82;
-    max-width: 46ch;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.32px;
+    color: var(--white-mute);
+    max-width: 520px;
+    margin: 0 auto 48px;
   }
 
-  .hero-tags {
-    margin-top: 26px;
+  .hero-vitals {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 48px;
     flex-wrap: wrap;
-  }
-
-  .tag {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.04em;
-    border: 1px solid rgba(247,247,244,0.22);
-    background: rgba(247,247,244,0.05);
-    padding: 7px 13px;
-    border-radius: 100px;
-  }
-
-  /* vitals block */
-  .vitals-card {
-    background: rgba(247,247,244,0.04);
-    border: 1px solid rgba(247,247,244,0.14);
-    border-radius: 14px;
-    padding: 26px;
-    box-shadow: var(--shadow-md);
-  }
-
-  .vitals-title {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--gold);
-    margin-bottom: 18px;
-  }
-
-  .vitals-grid {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 48px;
   }
 
   .vital {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    border-bottom: 1px solid rgba(247,247,244,0.1);
-    padding: 12px 0;
-  }
-
-  .vital:last-child { border-bottom: none; padding-bottom: 0; }
-  .vital:first-child { padding-top: 0; }
-
-  .vital-label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    opacity: 0.55;
-    white-space: nowrap;
+    text-align: center;
   }
 
   .vital-value {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: -0.005em;
-    text-align: right;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.25;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+  }
+
+  .vital-label {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    line-height: 2;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  /* Ghost pill — the only CTA style */
+  .btn-ghost {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.17px;
+    text-transform: uppercase;
+    line-height: 0.94;
+    padding: 18px 24px;
+    border: 1px solid var(--white);
+    border-radius: 32px;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .btn-ghost:hover {
+    background: var(--white);
+    color: var(--canvas);
   }
 
   /* ============================================
-     SECTION SHELL
+     SECTION BANDS — full-width, dark
      ============================================ */
-  section {
+  .band {
+    position: relative;
+    padding: 120px 32px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .band-soft {
+    background: var(--canvas-soft);
+  }
+
+  .band-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 64px 24px;
-    position: relative;
   }
 
-  .section-tinted {
-    background: #F0EFE9;
-  }
-
-  .section-tinted::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 100vw;
-    transform: translateX(-50%);
-    background: #F0EFE9;
-    z-index: -1;
-  }
-
-  .section-head {
-    margin-bottom: 34px;
-  }
-
-  .section-title {
+  .band-heading {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.5rem, 2.6vw, 1.9rem);
-    letter-spacing: -0.005em;
-    color: var(--navy-dark);
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.2;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .band-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    line-height: 2;
+    color: var(--ink-mute);
+    margin-bottom: 12px;
   }
 
   /* ============================================
-     HIGHLIGHT FILM
+     ABOUT
      ============================================ */
-  .film-embed {
+  .about-text {
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.32px;
+    color: var(--white-mute);
+    max-width: 680px;
+  }
+
+  .about-text + .about-text {
+    margin-top: 18px;
+  }
+
+  /* ============================================
+     VITALS GRID — scouting card
+     ============================================ */
+  .scouting-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    margin-top: 48px;
+  }
+
+  .scouting-cell {
+    background: var(--canvas);
+    padding: 24px;
+  }
+
+  .scouting-cell .vital-label {
+    margin-bottom: 8px;
+  }
+
+  .scouting-cell .vital-value {
+    font-size: 18px;
+    letter-spacing: 0.96px;
+  }
+
+  /* ============================================
+     FILM EMBED
+     ============================================ */
+  .film-container {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: var(--navy-dark);
-    border-radius: 14px;
+    background: var(--canvas-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--paper);
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 20px;
-    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .film-placeholder {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.17px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
   }
 
   .film-links {
-    margin-top: 18px;
+    margin-top: 32px;
     display: flex;
-    gap: 14px;
+    gap: 16px;
     flex-wrap: wrap;
   }
-
-  .btn {
-    display: inline-block;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.85rem;
-    padding: 11px 20px;
-    border: 1px solid rgba(27,36,48,0.18);
-    border-radius: 8px;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .btn:hover { background: var(--navy-dark); color: var(--paper); border-color: var(--navy-dark); transform: translateY(-1px); }
-
-  .btn.primary {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--navy-dark);
-  }
-
-  .btn.primary:hover { background: var(--gold-dim); border-color: var(--gold-dim); color: #fff; }
 
   /* ============================================
      STATS TABLE
      ============================================ */
-  table.stats {
+  .stats-table {
     width: 100%;
     border-collapse: collapse;
-    font-family: var(--font-mono);
-    font-size: 0.88rem;
   }
 
-  table.stats th, table.stats td {
-    padding: 13px 12px;
+  .stats-table th,
+  .stats-table td {
+    padding: 16px 12px;
     text-align: left;
-    border-bottom: 1px solid rgba(27,36,48,0.08);
+    border-bottom: 1px solid var(--hairline);
+    font-size: 14px;
+    letter-spacing: 0.32px;
   }
 
-  table.stats th {
+  .stats-table th {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.96px;
     text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.07em;
-    color: var(--steel);
-    border-bottom: 2px solid var(--navy-dark);
+    color: var(--ink-mute);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
   }
 
-  table.stats tr:last-child td { font-weight: 700; }
-  table.stats tbody tr:hover { background: rgba(199,154,69,0.06); }
+  .stats-table tbody tr:last-child td {
+    font-weight: 700;
+  }
+
+  .stats-table tbody tr {
+    transition: background 0.15s ease;
+  }
+
+  .stats-table tbody tr:hover {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .stats-note {
+    font-size: 13px;
+    letter-spacing: 0;
+    color: var(--ink-mute);
+    margin-top: 18px;
+  }
 
   /* ============================================
-     TWO-COL GRID (academics / contact)
+     ACADEMICS TWO-COL
      ============================================ */
-  .grid-2 {
+  .profile-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
   }
 
-  .card {
-    background: #fff;
-    border: 1px solid rgba(27,36,48,0.08);
-    border-top: 3px solid var(--gold);
-    border-radius: 10px 10px 14px 14px;
-    padding: 28px;
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  .profile-col {
+    background: var(--canvas);
+    padding: 32px;
   }
 
-  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-
-  .card h3 {
+  .profile-col h3 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: 14px;
-    color: var(--navy-dark);
+    font-size: 13px;
+    letter-spacing: 1.17px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
   }
 
-  .card p, .card li { font-size: 0.95rem; color: var(--ink); }
-  .card p { line-height: 1.7; }
+  .profile-col ul {
+    list-style: none;
+  }
 
-  .card ul { list-style: none; }
-  .card li { padding: 8px 0; border-bottom: 1px solid rgba(27,36,48,0.07); }
-  .card li:last-child { border-bottom: none; }
+  .profile-col li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 15px;
+    color: var(--white-mute);
+  }
+
+  .profile-col li:last-child {
+    border-bottom: none;
+  }
 
   /* ============================================
-     CONTACT / FOOTER
+     FOOTER
      ============================================ */
   footer {
-    background: var(--navy-dark);
-    color: var(--paper);
-    padding: 52px 24px;
-    border-top: 1px solid rgba(199,154,69,0.35);
+    border-top: 1px solid var(--hairline);
+    padding: 48px 32px;
   }
 
   .footer-inner {
@@ -422,285 +450,379 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 32px;
   }
 
-  .footer-inner h3 {
+  .footer-name {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 13px;
+    letter-spacing: 1.17px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
   }
 
-  .contact-list {
-    font-family: var(--font-mono);
-    font-size: 0.84rem;
-    line-height: 2;
+  .footer-sub {
+    font-size: 13px;
+    color: var(--ink-mute);
   }
 
-  .contact-list a:hover { color: var(--gold); }
+  .footer-contact {
+    font-size: 13px;
+    line-height: 2.2;
+    color: var(--white-mute);
+    text-align: right;
+  }
+
+  .footer-contact a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer-contact a:hover {
+    color: var(--white);
+  }
+
+  .footer-social {
+    margin-top: 16px;
+    display: flex;
+    gap: 24px;
+    justify-content: flex-end;
+  }
+
+  .footer-social a {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-social a:hover { color: var(--white); }
+
+  .footer-legal {
+    width: 100%;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-align: center;
+  }
 
   /* ============================================
      RESPONSIVE
      ============================================ */
-  @media (max-width: 800px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .grid-2 { grid-template-columns: 1fr; }
-    .nav-links { font-size: 0.72rem; gap: 16px; }
+  @media (max-width: 768px) {
+    header { padding: 18px 20px; }
+
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      padding: 100px 32px;
+      gap: 24px;
+      z-index: 99;
+    }
+
+    .nav-links.open a { font-size: 24px; opacity: 1; }
+
+    .hero-vitals { gap: 24px; }
+
+    .band { padding: 80px 20px; }
+
+    .scouting-grid { grid-template-columns: 1fr 1fr; }
+
+    .profile-grid { grid-template-columns: 1fr; }
+
+    .film-links { flex-direction: column; }
+    .film-links .btn-ghost { text-align: center; }
+
+    .footer-contact { text-align: left; }
+    .footer-social { justify-content: flex-start; }
   }
 
-  /* Respect reduced motion */
+  @media (max-width: 480px) {
+    .scouting-grid { grid-template-columns: 1fr; }
+    .hero-vitals { gap: 16px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
   }
 
-  /* Visible keyboard focus */
   a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--white);
     outline-offset: 2px;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="nav-wrap">
-    <div class="nav-name">Adrielle Rosario</div>
-    <nav class="nav-links">
-      <a href="#about">About</a>
-      <a href="#film">Film</a>
-      <a href="#stats">Stats</a>
-      <a href="#academics">Academics</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
+<!-- NAV -->
+<header id="nav">
+  <div class="nav-wordmark">Adrielle Rosario</div>
+  <nav class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#film">Film</a>
+    <a href="#stats">Stats</a>
+    <a href="#academics">Academics</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
 <!-- ============================================
-     HERO
+     HERO — full-viewport band
+     Replace .hero-bg gradient with a real action photo.
      ============================================ -->
-<div class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-photo">AR</div>
-      <div class="hero-eyebrow">Men's Lacrosse &middot; Class of 2028</div>
-      <h1>Adrielle Rosario</h1>
-      <p class="hero-sub">
-        Midfielder &middot; Right-Handed &middot; Madrid, Spain
-        &middot; Madrid Osos (Men's Club) &middot; Dominican Republic National Team
-      </p>
-      <div class="hero-tags">
-        <span class="tag">5&#8242;10&#8243;</span>
-        <span class="tag">140 lb</span>
-        <span class="tag">GPA [X.X]</span>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Men's Lacrosse &middot; Class of 2028</div>
+    <h1>Adrielle<br>Rosario</h1>
+    <p class="hero-sub">
+      Midfielder &middot; Right-Handed &middot; Madrid, Spain &middot;
+      Madrid Osos (Men's Club) &middot; Dominican Republic National Team
+    </p>
+    <div class="hero-vitals">
+      <div class="vital">
+        <div class="vital-value">5'10"</div>
+        <div class="vital-label">Height</div>
+      </div>
+      <div class="vital">
+        <div class="vital-value">140</div>
+        <div class="vital-label">Weight (lb)</div>
+      </div>
+      <div class="vital">
+        <div class="vital-value">#41</div>
+        <div class="vital-label">Jersey</div>
+      </div>
+      <div class="vital">
+        <div class="vital-value">2028</div>
+        <div class="vital-label">Grad Year</div>
       </div>
     </div>
-
-    <div class="vitals-card">
-      <div class="vitals-title">Scouting Vitals</div>
-      <div class="vitals-grid">
-        <div class="vital">
-          <div class="vital-label">Position</div>
-          <div class="vital-value">Midfielder</div>
-        </div>
-        <div class="vital">
-          <div class="vital-label">Jersey #</div>
-          <div class="vital-value">#41</div>
-        </div>
-        <div class="vital">
-          <div class="vital-label">Grad Year</div>
-          <div class="vital-value">2028</div>
-        </div>
-        <div class="vital">
-          <div class="vital-label">GPA / Test</div>
-          <div class="vital-value">X.X / XXXX</div>
-        </div>
-        <div class="vital">
-          <div class="vital-label">Club Team</div>
-          <div class="vital-value">Madrid Osos</div>
-        </div>
-        <div class="vital">
-          <div class="vital-label">National Team</div>
-          <div class="vital-value">Dominican Republic</div>
-        </div>
-        <div class="vital">
-          <div class="vital-label">High School</div>
-          <div class="vital-value">Brewster Madrid</div>
-        </div>
-      </div>
-    </div>
+    <a class="btn-ghost" href="#film">Watch Highlights</a>
   </div>
-</div>
-
-<div style="background: var(--paper); padding-top: 1px;"><div class="yard-line" style="margin-top: -1px;"></div></div>
+</section>
 
 <!-- ============================================
-     ABOUT ME
+     ABOUT
      ============================================ -->
-<section id="about" class="section-tinted">
-  <div class="section-head">
-    <h2 class="section-title">About Me</h2>
-  </div>
-
-  <div class="card">
-    <p>
+<section class="band band-soft" id="about">
+  <div class="band-inner">
+    <div class="band-eyebrow">Background</div>
+    <h2 class="band-heading">About Me</h2>
+    <p class="about-text">
       I was born in Florida and moved to Madrid only eight months ago. Lacrosse is
       not a common sport here, and it is even less common within the Dominican
       community I grew up around, so I did not actually find the game until two
       years ago. Once I picked up a stick the passion took hold immediately and it
       has not let up since. I play midfield for Madrid Osos and I also play for the
-      Dominican Republic national team when they are in season. Soccer has been
-      part of my life just as long. I play for my school team, where I am captain,
-      and for a club team as well. Chasing two sports at a high level across two
-      countries has taught me how to manage my time, stay disciplined, and compete
-      no matter who I am lined up against.
+      Dominican Republic national team when they are in season.
     </p>
-    <p style="margin-top: 14px;">
+    <p class="about-text">
+      Soccer has been part of my life just as long. I play for my school team,
+      where I am captain, and for a club team as well. Chasing two sports at a
+      high level across two countries has taught me how to manage my time, stay
+      disciplined, and compete no matter who I am lined up against.
+    </p>
+    <p class="about-text">
       Off the field I am passionate about coding and technology. I won the
       Brewster 2026 Hackathon, which reinforced my drive to solve problems
       creatively whether it is on a screen or on the field.
     </p>
+
+    <!-- Scouting vitals grid -->
+    <div class="scouting-grid">
+      <div class="scouting-cell">
+        <div class="vital-label">Position</div>
+        <div class="vital-value">Midfielder</div>
+      </div>
+      <div class="scouting-cell">
+        <div class="vital-label">Club Team</div>
+        <div class="vital-value">Madrid Osos</div>
+      </div>
+      <div class="scouting-cell">
+        <div class="vital-label">National Team</div>
+        <div class="vital-value">Dominican Republic</div>
+      </div>
+      <div class="scouting-cell">
+        <div class="vital-label">High School</div>
+        <div class="vital-value">Brewster Madrid</div>
+      </div>
+      <div class="scouting-cell">
+        <div class="vital-label">GPA / Test</div>
+        <div class="vital-value">X.X / XXXX</div>
+      </div>
+      <div class="scouting-cell">
+        <div class="vital-label">Dominant Hand</div>
+        <div class="vital-value">Right</div>
+      </div>
+    </div>
   </div>
 </section>
-
-<div class="yard-line"></div>
 
 <!-- ============================================
      HIGHLIGHT FILM
      ============================================ -->
-<section id="film">
-  <div class="section-head">
-    <h2 class="section-title">Highlight Film</h2>
-  </div>
+<section class="band" id="film">
+  <div class="band-inner">
+    <div class="band-eyebrow">Game Film</div>
+    <h2 class="band-heading">Highlights</h2>
 
-  <div class="film-embed">
-    [ Embed your highlight video here — YouTube, Hudl, or Vimeo iframe goes in this box. ]
-  </div>
+    <div class="film-container">
+      <!-- Replace with: <iframe src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe> -->
+      <span class="film-placeholder">Embed highlight video here</span>
+    </div>
 
-  <div class="film-links">
-    <a class="btn primary" href="#" target="_blank" rel="noopener">Full Highlight Reel</a>
-    <a class="btn" href="#" target="_blank" rel="noopener">Hudl Profile</a>
-    <a class="btn" href="#" target="_blank" rel="noopener">Full Game Film</a>
+    <div class="film-links">
+      <a class="btn-ghost" href="#" target="_blank" rel="noopener">Full Highlight Reel</a>
+      <a class="btn-ghost" href="#" target="_blank" rel="noopener">Hudl Profile</a>
+      <a class="btn-ghost" href="#" target="_blank" rel="noopener">Full Game Film</a>
+    </div>
   </div>
 </section>
-
-<div class="yard-line"></div>
 
 <!-- ============================================
      STATS
      ============================================ -->
-<section id="stats" class="section-tinted">
-  <div class="section-head">
-    <h2 class="section-title">Season Stats</h2>
-  </div>
+<section class="band band-soft" id="stats">
+  <div class="band-inner">
+    <div class="band-eyebrow">Performance</div>
+    <h2 class="band-heading">Season Stats</h2>
 
-  <table class="stats">
-    <thead>
-      <tr>
-        <th>Season</th>
-        <th>Team</th>
-        <th>GP</th>
-        <th>Goals</th>
-        <th>Assists</th>
-        <th>Points</th>
-        <th>GB</th>
-        <th>CT%</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>20XX (Spring)</td>
-        <td>Madrid Osos</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>20XX (Fall/Club)</td>
-        <td>Madrid Osos</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>Career Totals</td>
-        <td>—</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--steel); margin-top: 14px;">
-    Note: Brewster Madrid does not field a lacrosse team — all competitive play is with Madrid Osos.
-  </p>
+    <table class="stats-table">
+      <thead>
+        <tr>
+          <th>Season</th>
+          <th>Team</th>
+          <th>GP</th>
+          <th>Goals</th>
+          <th>Assists</th>
+          <th>Points</th>
+          <th>GB</th>
+          <th>CT%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20XX (Spring)</td>
+          <td>Madrid Osos</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>20XX (Fall/Club)</td>
+          <td>Madrid Osos</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>Career Totals</td>
+          <td>—</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+          <td>--</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="stats-note">
+      Brewster Madrid does not field a lacrosse team — all competitive play is with Madrid Osos.
+    </p>
+  </div>
 </section>
 
-<div class="yard-line"></div>
-
 <!-- ============================================
-     ACADEMICS + ATHLETIC PROFILE
+     ACADEMICS & ATHLETIC PROFILE
      ============================================ -->
-<section id="academics">
-  <div class="section-head">
-    <h2 class="section-title">Academics &amp; Profile</h2>
-  </div>
+<section class="band" id="academics">
+  <div class="band-inner">
+    <div class="band-eyebrow">Profile</div>
+    <h2 class="band-heading">Academics &amp; Athletics</h2>
 
-  <div class="grid-2">
-    <div class="card">
-      <h3>Academics</h3>
-      <ul>
-        <li>GPA: [X.X / 4.0, weighted or unweighted]</li>
-        <li>SAT / ACT: [Score]</li>
-        <li>Intended Major(s): [Major]</li>
-        <li>Academic honors: [Honor roll, AP scholar, etc.]</li>
-        <li>Brewster 2026 Hackathon Winner</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Athletic Profile</h3>
-      <ul>
-        <li>Position: Midfielder</li>
-        <li>Dominant hand: Right</li>
-        <li>Other sport: Soccer, Captain (School), Club Soccer</li>
-        <li>Height / Weight: 5&#8242;10&#8243; / 140 lb</li>
-      </ul>
+    <div class="profile-grid">
+      <div class="profile-col">
+        <h3>Academics</h3>
+        <ul>
+          <li>GPA: [X.X / 4.0, weighted or unweighted]</li>
+          <li>SAT / ACT: [Score]</li>
+          <li>Intended Major(s): [Major]</li>
+          <li>Academic honors: [Honor roll, AP scholar, etc.]</li>
+          <li>Brewster 2026 Hackathon Winner</li>
+        </ul>
+      </div>
+      <div class="profile-col">
+        <h3>Athletic Profile</h3>
+        <ul>
+          <li>Position: Midfielder</li>
+          <li>Dominant hand: Right</li>
+          <li>Other sport: Soccer — Captain (School), Club</li>
+          <li>Height / Weight: 5'10" / 140 lb</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="yard-line"></div>
-
 <!-- ============================================
-     CONTACT / FOOTER
+     FOOTER / CONTACT
      ============================================ -->
 <footer id="contact">
   <div class="footer-inner">
     <div>
-      <h3>Adrielle Rosario</h3>
-      <p style="opacity:0.75; margin-top:6px;">Class of 2028 &middot; Midfielder</p>
+      <div class="footer-name">Adrielle Rosario</div>
+      <div class="footer-sub">Class of 2028 &middot; Midfielder</div>
     </div>
 
-    <div class="contact-list">
+    <div class="footer-contact">
       <div>Player: <a href="mailto:agrosario1209@gmail.com">agrosario1209@gmail.com</a> &middot; [Phone]</div>
       <div>Madrid Osos Coach: [Coach Name] &middot; <a href="mailto:clubcoach@email.com">clubcoach@email.com</a></div>
-      <div>Brewster Madrid Contact (Academic): [Contact Name] &middot; <a href="mailto:contact@email.com">contact@email.com</a></div>
-      <div><a href="#" target="_blank" rel="noopener">Hudl</a> &middot; <a href="#" target="_blank" rel="noopener">Twitter/X</a> &middot; <a href="#" target="_blank" rel="noopener">Instagram</a></div>
+      <div>Brewster Madrid (Academic): [Contact Name] &middot; <a href="mailto:contact@email.com">contact@email.com</a></div>
+      <div class="footer-social">
+        <a href="#" target="_blank" rel="noopener">Hudl</a>
+        <a href="#" target="_blank" rel="noopener">Twitter/X</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      &copy; 2026 Adrielle Rosario. All rights reserved.
     </div>
   </div>
 </footer>
+
+<!-- Nav scroll behavior -->
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+</script>
 
 </body>
 </html>
