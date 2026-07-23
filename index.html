@@ -48,9 +48,7 @@
   img, video { max-width: 100%; display: block; }
 
   /* ============================================
-     YARD-LINE DIVIDER — signature element, refined
-     A soft single hairline with a centered tick,
-     replacing the busy hash-mark strip
+     YARD-LINE DIVIDER
      ============================================ */
   .yard-line {
     position: relative;
@@ -287,25 +285,7 @@
   }
 
   .section-head {
-    display: flex;
-    align-items: center;
-    gap: 16px;
     margin-bottom: 34px;
-  }
-
-  .section-num {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--gold-dim);
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(199,154,69,0.4);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
   }
 
   .section-title {
@@ -335,10 +315,6 @@
     padding: 20px;
     box-shadow: var(--shadow-md);
   }
-
-  /* When you're ready, replace this div with a real embed, e.g.:
-     <iframe src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe>
-     or a Hudl embed snippet. */
 
   .film-links {
     margin-top: 18px;
@@ -497,7 +473,6 @@
       <a href="#film">Film</a>
       <a href="#stats">Stats</a>
       <a href="#academics">Academics</a>
-      <a href="#schedule">Schedule</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -566,7 +541,6 @@
      ============================================ -->
 <section id="about" class="section-tinted">
   <div class="section-head">
-    <span class="section-num">01</span>
     <h2 class="section-title">About Me</h2>
   </div>
 
@@ -583,6 +557,11 @@
       countries has taught me how to manage my time, stay disciplined, and compete
       no matter who I am lined up against.
     </p>
+    <p style="margin-top: 14px;">
+      Off the field I am passionate about coding and technology. I won the
+      Brewster 2026 Hackathon, which reinforced my drive to solve problems
+      creatively whether it is on a screen or on the field.
+    </p>
   </div>
 </section>
 
@@ -593,7 +572,6 @@
      ============================================ -->
 <section id="film">
   <div class="section-head">
-    <span class="section-num">02</span>
     <h2 class="section-title">Highlight Film</h2>
   </div>
 
@@ -615,7 +593,6 @@
      ============================================ -->
 <section id="stats" class="section-tinted">
   <div class="section-head">
-    <span class="section-num">03</span>
     <h2 class="section-title">Season Stats</h2>
   </div>
 
@@ -677,7 +654,6 @@
      ============================================ -->
 <section id="academics">
   <div class="section-head">
-    <span class="section-num">04</span>
     <h2 class="section-title">Academics &amp; Profile</h2>
   </div>
 
@@ -689,6 +665,7 @@
         <li>SAT / ACT: [Score]</li>
         <li>Intended Major(s): [Major]</li>
         <li>Academic honors: [Honor roll, AP scholar, etc.]</li>
+        <li>Brewster 2026 Hackathon Winner</li>
       </ul>
     </div>
 
@@ -707,43 +684,6 @@
 <div class="yard-line"></div>
 
 <!-- ============================================
-     SCHEDULE
-     ============================================ -->
-<section id="schedule" class="section-tinted">
-  <div class="section-head">
-    <span class="section-num">05</span>
-    <h2 class="section-title">Upcoming Schedule</h2>
-  </div>
-
-  <table class="stats">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Opponent / Showcase</th>
-        <th>Location</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>MM/DD/YYYY</td>
-        <td>[High School / Club Game]</td>
-        <td>vs. [Opponent]</td>
-        <td>[City, State]</td>
-      </tr>
-      <tr>
-        <td>MM/DD/YYYY</td>
-        <td>[Showcase / Tournament]</td>
-        <td>[Event Name]</td>
-        <td>[City, State]</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<div class="yard-line"></div>
-
-<!-- ============================================
      CONTACT / FOOTER
      ============================================ -->
 <footer id="contact">
@@ -754,7 +694,7 @@
     </div>
 
     <div class="contact-list">
-      <div>Player: <a href="mailto:you@email.com">you@email.com</a> &middot; [Phone]</div>
+      <div>Player: <a href="mailto:agrosario1209@gmail.com">agrosario1209@gmail.com</a> &middot; [Phone]</div>
       <div>Madrid Osos Coach: [Coach Name] &middot; <a href="mailto:clubcoach@email.com">clubcoach@email.com</a></div>
       <div>Brewster Madrid Contact (Academic): [Contact Name] &middot; <a href="mailto:contact@email.com">contact@email.com</a></div>
       <div><a href="#" target="_blank" rel="noopener">Hudl</a> &middot; <a href="#" target="_blank" rel="noopener">Twitter/X</a> &middot; <a href="#" target="_blank" rel="noopener">Instagram</a></div>
