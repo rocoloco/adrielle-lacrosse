@@ -793,8 +793,10 @@
     <h2 class="band-heading">Highlights</h2>
 
     <div class="film-container">
-      <!-- Replace with: <iframe src="https://www.youtube.com/embed/VIDEO_ID" style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe> -->
-      <span class="film-placeholder">Embed highlight video here</span>
+      <video controls playsinline preload="metadata"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;">
+        <source src="assets/highlight-reel.mp4" type="video/mp4">
+      </video>
     </div>
 
     <div class="film-links">
