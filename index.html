@@ -588,11 +588,11 @@
       height: 68vh;
     }
 
-    /* Name sits low over the clip with only a bottom scrim behind it,
-       so the shot stays visible instead of being darkened edge-to-edge.
-       Stats/subtitle move to hero-below, off the video entirely. */
+    /* Name sits low over the clip, no scrim behind it - the video carries
+       itself. A soft text-shadow keeps the letters readable without
+       darkening the frame. Stats/subtitle move to hero-below, off the
+       video entirely. */
     .hero-top {
-      position: relative;
       min-height: 68vh;
       display: flex;
       flex-direction: column;
@@ -600,28 +600,13 @@
       padding-bottom: 32px;
     }
 
-    .hero-top::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(to top,
-        rgba(0, 0, 0, 0.78) 0%,
-        rgba(0, 0, 0, 0.4) 25%,
-        rgba(0, 0, 0, 0.12) 45%,
-        rgba(0, 0, 0, 0) 60%);
-    }
-
     .hero-top .hero-eyebrow,
     .hero-top h1 {
-      position: relative;
-      z-index: 1;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
     }
 
     .hero-scroll-cue {
       display: block;
-      position: relative;
-      z-index: 1;
       margin-top: 20px;
       font-size: 12px;
       font-weight: 700;
@@ -629,6 +614,7 @@
       text-transform: uppercase;
       color: var(--white-mute);
       opacity: 0.7;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
     }
 
     .hero-below {
