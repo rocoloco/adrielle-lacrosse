@@ -352,6 +352,12 @@
   /* ============================================
      STATS TABLE
      ============================================ */
+  .stats-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .stats-table {
     width: 100%;
     border-collapse: collapse;
@@ -364,6 +370,7 @@
     border-bottom: 1px solid var(--hairline);
     font-size: 14px;
     letter-spacing: 0.32px;
+    white-space: nowrap;
   }
 
   .stats-table th {
@@ -567,6 +574,15 @@
 
     .footer-contact { text-align: left; }
     .footer-social { justify-content: flex-start; }
+
+    /* 8 columns don't fit a phone width even with tighter spacing, so this
+       just reduces how far the table (contained in .stats-table-wrap) has
+       to scroll. */
+    .stats-table th,
+    .stats-table td {
+      padding: 12px 10px;
+      font-size: 13px;
+    }
   }
 
   @media (max-width: 600px) {
@@ -790,6 +806,7 @@
     <div class="band-eyebrow">Performance</div>
     <h2 class="band-heading">Season Stats</h2>
 
+    <div class="stats-table-wrap">
     <table class="stats-table">
       <thead>
         <tr>
@@ -836,6 +853,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <p class="stats-note">
       Brewster Madrid does not field a lacrosse team — all competitive play is with Madrid Osos.
     </p>
