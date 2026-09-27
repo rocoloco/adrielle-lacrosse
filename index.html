@@ -148,6 +148,10 @@
     padding: 0 32px;
   }
 
+  .hero-scroll-cue {
+    display: none;
+  }
+
   .hero-eyebrow {
     font-weight: 400;
     font-size: 12px;
@@ -568,7 +572,68 @@
   @media (max-width: 600px) {
     /* Portrait phones crop the 16:9 clip down to a narrow sliver;
        shift left of center so the shot at ~0:03 stays in frame. */
-    .hero-bg video { object-position: 40% 40%; }
+    .hero-bg video {
+      object-position: 40% 40%;
+      filter: brightness(0.65) contrast(1.15) saturate(0.85);
+    }
+
+    /* Pin the clip to one screen's worth of height instead of letting it
+       stretch to cover the name + stats stacked below it. */
+    .hero-bg {
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: auto;
+      height: 100vh;
+    }
+
+    /* Name sits low over the clip with only a bottom scrim behind it,
+       so the shot stays visible instead of being darkened edge-to-edge.
+       Stats/subtitle move to hero-below, off the video entirely. */
+    .hero-top {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 32px;
+    }
+
+    .hero-top::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to top,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.5) 40%,
+        rgba(0, 0, 0, 0) 72%);
+    }
+
+    .hero-top .hero-eyebrow,
+    .hero-top h1 {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-scroll-cue {
+      display: block;
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: var(--white-mute);
+      opacity: 0.7;
+    }
+
+    .hero-below {
+      background: var(--canvas);
+      padding-top: 48px;
+      padding-bottom: 56px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -618,31 +683,36 @@
     </video>
   </div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Men's Lacrosse &middot; Class of 2028</div>
-    <h1>Adrielle<br>Rosario</h1>
-    <p class="hero-sub">
-      Midfielder &middot; Right-Handed &middot; Madrid, Spain &middot;
-      Madrid Osos (Men's Club) &middot; Dominican Republic National Team
-    </p>
-    <div class="hero-vitals">
-      <div class="vital">
-        <div class="vital-value">5'10"</div>
-        <div class="vital-label">Height</div>
-      </div>
-      <div class="vital">
-        <div class="vital-value">140</div>
-        <div class="vital-label">Weight (lb)</div>
-      </div>
-      <div class="vital">
-        <div class="vital-value">#41</div>
-        <div class="vital-label">Jersey</div>
-      </div>
-      <div class="vital">
-        <div class="vital-value">2028</div>
-        <div class="vital-label">Grad Year</div>
-      </div>
+    <div class="hero-top">
+      <div class="hero-eyebrow">Men's Lacrosse &middot; Class of 2028</div>
+      <h1>Adrielle<br>Rosario</h1>
+      <div class="hero-scroll-cue" aria-hidden="true">Scroll for stats &darr;</div>
     </div>
-    <a class="btn-ghost" href="#film">Watch Highlights</a>
+    <div class="hero-below">
+      <p class="hero-sub">
+        Midfielder &middot; Right-Handed &middot; Madrid, Spain &middot;
+        Madrid Osos (Men's Club) &middot; Dominican Republic National Team
+      </p>
+      <div class="hero-vitals">
+        <div class="vital">
+          <div class="vital-value">5'10"</div>
+          <div class="vital-label">Height</div>
+        </div>
+        <div class="vital">
+          <div class="vital-value">140</div>
+          <div class="vital-label">Weight (lb)</div>
+        </div>
+        <div class="vital">
+          <div class="vital-value">#41</div>
+          <div class="vital-label">Jersey</div>
+        </div>
+        <div class="vital">
+          <div class="vital-value">2028</div>
+          <div class="vital-label">Grad Year</div>
+        </div>
+      </div>
+      <a class="btn-ghost" href="#film">Watch Highlights</a>
+    </div>
   </div>
 </section>
 
