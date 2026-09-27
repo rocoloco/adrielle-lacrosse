@@ -111,7 +111,7 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     text-align: center;
     overflow: hidden;
@@ -145,7 +145,7 @@
     position: relative;
     z-index: 1;
     max-width: 900px;
-    padding: 0 32px;
+    padding: 0 32px 96px;
   }
 
   .hero-scroll-cue {
@@ -586,6 +586,12 @@
   }
 
   @media (max-width: 600px) {
+    /* The 96px bottom padding added for desktop's bottom-anchored hero
+       text isn't needed here - hero-below manages its own spacing. */
+    .hero-content {
+      padding-bottom: 0;
+    }
+
     /* A full-height crop on a narrow phone only shows ~25% of the frame's
        width, which isn't wide enough to hold both the shooter and the
        goal. Cap the clip's height well under 100vh so a wider horizontal
