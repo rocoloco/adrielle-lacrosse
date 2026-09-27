@@ -565,6 +565,12 @@
     .footer-social { justify-content: flex-start; }
   }
 
+  @media (max-width: 600px) {
+    /* Portrait phones crop the 16:9 clip down to a narrow sliver;
+       shift left of center so the shot at ~0:03 stays in frame. */
+    .hero-bg video { object-position: 40% 40%; }
+  }
+
   @media (max-width: 480px) {
     .scouting-grid { grid-template-columns: 1fr; }
     .hero-vitals { gap: 16px; }
