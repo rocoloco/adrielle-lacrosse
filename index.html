@@ -930,6 +930,16 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
+  // The mobile menu opens by toggling a class on click, but nothing ever
+  // closed it again - selecting a link left the full-screen overlay stuck
+  // open. Close it whenever a link inside is tapped.
+  const navLinks = document.getElementById('navLinks');
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('open');
+    }
+  });
+
   // Hold the hero clip on its first frame for visitors who ask for reduced motion.
   const heroVideo = document.querySelector('.hero-bg video');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
