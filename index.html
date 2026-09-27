@@ -570,21 +570,22 @@
   }
 
   @media (max-width: 600px) {
-    /* Portrait phones crop the 16:9 clip down to a narrow sliver;
-       shift left of center so the shot at ~0:03 stays in frame. */
+    /* A full-height crop on a narrow phone only shows ~25% of the frame's
+       width, which isn't wide enough to hold both the shooter and the
+       goal. Cap the clip's height well under 100vh so a wider horizontal
+       slice is visible, and keep the position near center so both stay
+       in frame. */
     .hero-bg video {
-      object-position: 40% 40%;
+      object-position: 52% 40%;
       filter: brightness(0.65) contrast(1.15) saturate(0.85);
     }
 
-    /* Pin the clip to one screen's worth of height instead of letting it
-       stretch to cover the name + stats stacked below it. */
     .hero-bg {
       top: 0;
       right: 0;
       left: 0;
       bottom: auto;
-      height: 100vh;
+      height: 68vh;
     }
 
     /* Name sits low over the clip with only a bottom scrim behind it,
@@ -592,7 +593,7 @@
        Stats/subtitle move to hero-below, off the video entirely. */
     .hero-top {
       position: relative;
-      min-height: 100vh;
+      min-height: 68vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -605,9 +606,10 @@
       inset: 0;
       z-index: 0;
       background: linear-gradient(to top,
-        rgba(0, 0, 0, 0.88) 0%,
-        rgba(0, 0, 0, 0.5) 40%,
-        rgba(0, 0, 0, 0) 72%);
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.4) 25%,
+        rgba(0, 0, 0, 0.12) 45%,
+        rgba(0, 0, 0, 0) 60%);
     }
 
     .hero-top .hero-eyebrow,
